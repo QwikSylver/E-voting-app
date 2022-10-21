@@ -8,6 +8,7 @@ class Category(models.Model):
     def __str__(self):
         return self.election_reason
 
+
 class Election(models.Model):
     election_id = models.AutoField(primary_key=True)
     topic = models.CharField(max_length=100)
@@ -15,6 +16,7 @@ class Election(models.Model):
 
     def __str__(self):
         return self.topic
+
 
 class Candidate(models.Model):
     candidate_id = models.AutoField(primary_key=True)
@@ -25,12 +27,14 @@ class Candidate(models.Model):
     def __str__(self):
         return self.candidate_name
 
+
 class Voter(models.Model):
     voter_id = models.AutoField(primary_key=True)
     voter_password = models.CharField(max_length=100)
 
     def __str__(self):
         return self.voter_id
+
 
 class Vote(models.Model):
     voter_id = models.ForeignKey(Voter, on_delete=models.CASCADE)
