@@ -55,7 +55,7 @@ ROOT_URLCONF = "app.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -76,13 +76,13 @@ WSGI_APPLICATION = "app.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "evoting",
+        "ENGINE": "django_cockroachdb",
+        "NAME": "Evoting",
         "USER": "voting",
-        "PASSWORD": "Password123.",
-        "HOST": "localhost",
-        "PORT": "3306",
-        "sql_mode": "STATIC_TRANS_TABLES",
+        "PASSWORD": "FP5464maq4lTyxriyHYnMg",
+        "HOST": "free-tier12.aws-ap-south-1.cockroachlabs.cloud",
+        "PORT": "26257",
+        "OPTIONS": {"sslmode": "verify-full", "options": "--cluster=e-voting-1430"},
     }
 }
 
@@ -127,3 +127,9 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = "elections.Voter"
+
+LOGIN_REDIRECT_URL = "home"
+
+LOGOUT_REDIRECT_URL = "home"

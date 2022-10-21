@@ -1,39 +1,47 @@
+from django.contrib.auth.models import AbstractUser
+import uuid
+
 from django.db import models
 
+
 # Create your models here.
-class Category(models.Model):
-    category_id = models.AutoField(primary_key=True)
-    category_reason = models.CharField(max_length=100)
+class Election(models.Model):
+    election_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    election_reason = models.CharField(max_length=100)
+    voters = models.ManyToManyField("Voter", related_name="elections")
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
 
     def __str__(self):
         return self.election_reason
 
 
-class Election(models.Model):
-    election_id = models.AutoField(primary_key=True)
+class Category(models.Model):
+    category_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     topic = models.CharField(max_length=100)
-    elections = models.ForeignKey(Category, on_delete=models.CASCADE)
+    election = models.ForeignKey(Election, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.topic
 
 
 class Candidate(models.Model):
-    candidate_id = models.AutoField(primary_key=True)
+    candidate_id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False
+    )
     candidate_name = models.CharField(max_length=100)
-    candidate_election = models.ForeignKey(Election, on_delete=models.CASCADE)
+    candidate_category = models.ForeignKey(Category, on_delete=models.CASCADE)
     description = models.CharField(max_length=250, blank=True, null=True)
 
     def __str__(self):
         return self.candidate_name
 
 
-class Voter(models.Model):
-    voter_id = models.AutoField(primary_key=True)
-    voter_password = models.CharField(max_length=100)
+class Voter(AbstractUser):
+    voter_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     def __str__(self):
-        return self.voter_id
+        return self.username
 
 
 class Vote(models.Model):
@@ -42,4 +50,4 @@ class Vote(models.Model):
     candidate_id = models.ForeignKey(Candidate, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.vote_id
+        return self.voter_id
