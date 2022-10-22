@@ -1,17 +1,23 @@
 {% extends 'elections/base.html' %}
 
 <br />
-{% block title %}{{election.election_reason}}{% endblock title %} 
-
+{% block title %}{{election.election_reason}}{% endblock title %}
+<br />
 {% block content %}
-<h1>{{election.election_reason}}</h1>
-<p>{{election.start_time}} to {{election.end_time}}</p>
-
-{% for category in categories %}
-<div class="category">
-  <a href="{% url 'category_details' category.category_id %}"
-    ><h2>{{ category.topic }}</h2></a
-  >
+<div class="flex-container">
+  <h1 class="block">{{election.election_reason}}</h1>
+  <p>{{election.start_time|date}} to {{election.end_time|date}}</p>
 </div>
-{% endfor %} 
-{% endblock content %}
+
+<ul class="collection container">
+  {% for category in categories %}
+  <div class="category collection-item">
+    <a
+      href="{% url 'category_details' category.category_id %}"
+      class="flex-apart"
+      ><h3>{{ category.topic }}</h3>
+      <i class="material-icons">arrow_forward</i></a
+    >
+  </div>
+  {% endfor %} {% endblock content %}
+</ul>

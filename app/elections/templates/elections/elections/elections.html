@@ -1,28 +1,17 @@
 {% extends "elections/base.html" %}
+<br />
+{% block title %}Elections{% endblock title%}
+<br />
 
-<style>
-  .election-container {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-  }
-
-  .election {
-    border: 2px solid black;
-    max-width: 50rem;
-    margin: 2rem;
-  }
-</style>
-
-{% block title %}Elections{% endblock title %} {% block content %}
-
-<div class="election-container">
-  <div class="elections-browser">
-    <p>SRC Elections</p>
-    <p>FCI Elections</p>
-    <p>FHAS Elections</p>
-    <p>Dean Elections</p>
-  </div>
-  <div class="elections-occuring">
+{% block content %}
+<div class="row">
+  <ul class="elections-browser collection col m3">
+    <li class="collection-item"><a href="">SRC Elections</a></li>
+    <li class="collection-item"><a href="">FCI Elections</a></li>
+    <li class="collection-item"><a href="">FHAS Elections</a></li>
+    <li class="collection-item"><a href="">Dean Elections</a></li>
+  </ul>
+  <div class="elections-occuring col m9">
     {% for election in elections %}
     <div class="election">
       <a href="{% url 'elections_details' election.election_id %}"

@@ -6,25 +6,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
     <title>{% block title %}{% endblock title %}</title>
   </head>
   <body>
     <header>
-      <nav class="navbar">
-        <h1>Evoting</h1>
-        <ul class="navlist">
-          <li><a href="{% url 'home' %}">Home</a></li>
-          {% if user.is_authenticated %}
-          <li>
-            <a href="{% url 'user_profile' user.pk %}">Profile</a>
-          </li>
-          <li><a href="{% url 'logout' %}">Logout</a></li>
-          {% else %}
-          <li><a href="{% url 'login' %}">Login</a></li>
-          {% endif %}
-        </ul>
+      <nav class="blue-grey">
+        <div class="nav-wrapper">
+          <a class="" href="{% url 'home' %}"> Evoting</a>
+          <a href="#" data-target="mobile-view" class="sidenav-trigger"
+            ><i class="material-icons">menu</i></a
+          >
+          <ul class="right high-on-med-and-down">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'user_profile' user.pk %}">Profile</a>
+            </li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+          </ul>
+        </div>
       </nav>
+
+      <ul class="sidenav" id="mobile-view">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'user_profile' user.pk %}">Profile</a>
+        </li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+      </ul>
     </header>
     {% block content %}{% endblock content %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".sidenav");
+        var instances = M.Sidenav.init(elems, options);
+      });
+    </script>
   </body>
 </html>
