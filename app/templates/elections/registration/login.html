@@ -3,8 +3,11 @@
 <br />
 
 {% block title %}Login{%endblock title %} {% block content %}
-<form action="" method="post">
-  {% csrf_token %} {{form.as_p}}
-  <input type="submit" value="Login" />
-</form>
+<div class="container">
+  <h2>Login</h2>
+  <form action="" method="post">
+    {% csrf_token %} {{form.as_p}}
+    <input type="submit" value="Login" />
+  </form>
+</div>
 {% endblock content %}
