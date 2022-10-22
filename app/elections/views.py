@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.views.generic import UpdateView
+from django.utils.decorators import method_decorator
 from .models import *
 
 
@@ -22,14 +24,11 @@ def ResultsPageView(request, election_id):
     return render(request, "elections/elections/results.html", context)
 
 
-@login_required(login_url="login")
-def UserProfileView(request, user_id):
-
-    try:
-        user = Voter.objects.get(voter_id=user_id)
-    except Voter.DoesNotExist:
-        raise Http404("Voter does not exist")
-    return render(request, "elections/user_profile.html", {"user": user})
+@method_decorator(login_required, name="dispatch")
+class UserProfileView(UpdateView):
+    model = Voter
+    fields = ["username"]
+    template_name_suffix = "_update_profile"
 
 
 def loginPage(request):

@@ -1,0 +1,15 @@
+{% extends "elections/base.html" %} {% block title %}Profile{%endblock title %}
+
+<br />
+{% block content %}
+<main>
+  <div class="flex-container">
+    <h2>Welcome {{user.username}}</h2>
+    <h3>Here you can update your info:</h3>
+  </div>
+  <form method="post" class="container">
+    {% csrf_token %} {{form.as_p}}
+    <input type="submit" value="Update" />
+  </form>
+</main>
+{% endblock content %}
