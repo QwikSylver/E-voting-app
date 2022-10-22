@@ -97,7 +97,7 @@ def categoryDetails(request, category_id):
         )
         vote.save()
 
-        return redirect("elections_details", category_id=category_id)
+        return redirect("elections_details", election_id=election.election_id)
 
     context = {"category": category, "candidates": candidates}
     return render(request, "elections/elections/category.html", context)
