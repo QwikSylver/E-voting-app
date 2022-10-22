@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-from django.urls import reverse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,13 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "elections.apps.ElectionsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "elections.apps.ElectionsConfig",
 ]
 
 MIDDLEWARE = [
@@ -56,7 +55,7 @@ ROOT_URLCONF = "app.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [BASE_DIR / "elections/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -83,7 +82,10 @@ DATABASES = {
         "PASSWORD": "IXnTW4o4XrJdGqdPPok3qA",
         "HOST": "free-tier12.aws-ap-south-1.cockroachlabs.cloud",
         "PORT": "26257",
-        "OPTIONS":{"sslmode": "verify-full", "options": "--cluster=wad-assignment-1185"}
+        "OPTIONS": {
+            "sslmode": "verify-full",
+            "options": "--cluster=wad-assignment-1185",
+        },
     }
 }
 
@@ -133,6 +135,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "elections.Voter"
 
-LOGIN_REDIRECT_URL = reverse("user_profile", args="user.pk")
+LOGIN_REDIRECT_URL = "home"
 
 LOGOUT_REDIRECT_URL = "home"

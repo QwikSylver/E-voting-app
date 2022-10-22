@@ -1,11 +1,10 @@
-{% extends "base.html" %}
+{% extends "elections/base.html" %} {% block title %}Account{%endblock title %}
 
-{% block title %}Account{%endblock title %} 
-
+<br />
 {% block content %}
 <main>
-    <div class="user_details">
-        <h1>{{ user.username }}</h1>
-    </div>
+  <div class="user_details">
+    <h1>{{ user.username }}</h1>
+  </div>
 </main>
 {% endblock content %}

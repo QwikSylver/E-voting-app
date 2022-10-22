@@ -1,3 +1,7 @@
+{% extends 'elections/base.html' %}
+
+<br />
+{% block title %}{{category.topic}}{% endblock title %} {% block content %}
 <h1>{{category.topic}}</h1>
 <h2>Candidates</h2>
 
@@ -6,7 +10,11 @@
   <form>
     <h2>{{ candidate.candidate_name }}</h2>
     <p>{{ candidate.description }}</p>
-    <input type="submit" name="vote" value="Vote For {{ candidate.candidate_name }}"/>
+    <input
+      type="submit"
+      name="vote"
+      value="Vote For {{ candidate.candidate_name }}"
+    />
   </form>
 </div>
-{% endfor %}
+{% endfor %} {% endblock content %}
