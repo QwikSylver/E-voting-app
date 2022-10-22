@@ -1,4 +1,5 @@
 # from urllib import request
+import datetime
 from django.http import HttpResponse, Http404
 from django.contrib import messages
 from django.shortcuts import render, redirect
@@ -64,15 +65,34 @@ def ElectionResults(request, election_id):
     canditates = Candidate.objects.filter(candidate_category__in=categories)
     votes = Vote.objects.filter(election_id=election_id).count()
     # candidate_votes = Vote.objects.raw("select candidate_id, count(voter_id) as votes from votes where election_id = %s and category_id = %s group by candidate_id", [election_id, categories.category_id])
-    canditates_votes = Vote.objects.filter(election_id=election_id).values('candidate_id').annotate(votes=models.Count('voter_id'))
-    context = {"election": election, "categories": categories, "votes": votes, "candidates": canditates, "canditates_votes": canditates_votes}
+    canditates_votes = (
+        Vote.objects.filter(election_id=election_id)
+        .values("candidate_id")
+        .annotate(votes=models.Count("voter_id"))
+    )
+    context = {
+        "election": election,
+        "categories": categories,
+        "votes": votes,
+        "candidates": canditates,
+        "canditates_votes": canditates_votes,
+    }
     return render(request, "elections/election_results.html", context)
 
 
 @login_required(login_url="login")
 def electionsPage(request):
     elections = Election.objects.all()
-    context = {"elections": elections}
+    days_left = {}
+    for election in elections:
+        if (election.end_time - datetime.datetime.now(datetime.timezone.utc)).days > 0:
+            days_left[election.election_id] = election.end_time - datetime.datetime.now(
+                datetime.timezone.utc
+            )
+        else:
+            days_left[election.election_id] = "over"
+
+    context = {"elections": elections, "days_left": days_left}
     return render(request, "elections/elections/elections.html", context)
 
 

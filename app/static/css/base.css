@@ -8,9 +8,15 @@ a {
   color: black;
 }
 
-nav div a {
+nav div a.title {
   font-size: 34px;
   padding: 10px 20px;
+}
+
+nav div a.sidenav-trigger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flex-container {

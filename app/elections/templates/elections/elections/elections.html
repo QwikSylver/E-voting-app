@@ -1,4 +1,4 @@
-{% extends "elections/base.html" %}
+{% extends "elections/base.html" %} {% load dict_access %}
 <br />
 {% block title %}Elections{% endblock title%}
 <br />
@@ -23,9 +23,14 @@
         ><h2>{{ election.election_reason }}</h2></a
       >
       <p>{{ election.start_time }} to {{ election.end_time }}</p>
+      {% if not days_left|keyvalue:election.election_id == "over" %}
+      <p>Days left: {{days_left|keyvalue:election.election_id}}</p>
+      <p>Please wait until the end of the election to view votes</p>
+      {% else %}
       <a>
         <a href="{% url 'elections_results' election.election_id %}">Results</a>
       </a>
+      {% endif %}
     </div>
     {% endfor %}
   </div>

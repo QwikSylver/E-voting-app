@@ -10,6 +10,9 @@
 <div class="row">
   {% for candidate in candidates %}
   <div class="candidate card blue-grey col s12 m4">
+    <div class="card-image">
+      <image class="image"></image>
+    </div>
     <form method="post" class="card-content white-text">
       {% csrf_token %}
       <h2 class="cart-title center-align">{{ candidate.candidate_name }}</h2>
