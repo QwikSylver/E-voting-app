@@ -6,10 +6,15 @@
 {% block content %}
 <div class="row">
   <ul class="elections-browser collection col m3">
-    <li class="collection-item"><a href="">SRC Elections</a></li>
-    <li class="collection-item"><a href="">FCI Elections</a></li>
-    <li class="collection-item"><a href="">FHAS Elections</a></li>
-    <li class="collection-item"><a href="">Dean Elections</a></li>
+    <p class="collection-title">Available elections</p>
+    <hr />
+    {% for election in elections %}
+    <li class="collection-item">
+      <a href="{% url 'elections_details' election.election_id %}"
+        >{{election.election_reason}}</a
+      >
+    </li>
+    {% endfor %}
   </ul>
   <div class="elections-occuring col m9">
     {% for election in elections %}

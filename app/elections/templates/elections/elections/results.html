@@ -1,0 +1,7 @@
+{% extends 'elections/base.html' %}
+<br />
+{% block title %}Results{% endblock title %}
+<br />
+{% block content %} {% for result in results %}
+<p>{{result.candidate_id}}</p>
+{% endfor %} {% endblock content %}
