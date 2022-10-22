@@ -1,5 +1,7 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required 
+from django.contrib.auth import authenticate, login, logout
 from .models import *
 
 
@@ -27,10 +29,21 @@ def electionDetails(request, election_id):
 def categoryDetails(request, category_id):
     category = Category.objects.get(category_id=category_id)
     candidates = Candidate.objects.filter(candidate_category=category_id)
+    
+    candidate = None
+    voter = None
+    election = category.election
 
-    vote_candidates = Voter.voter_id
-    vote_election = Election.election_id
-    vote_category = Category.category_id
+    # Does not work
+    if request.method == 'POST':
+        candidate_id = request.POST.get('candidate_id')
+        candidate = Candidate.objects.get(candidate_id=candidate_id)
+        voter = 'sakaria26'
+        vote = Vote.create(voter_id=voter, election_id=election, candidate_id=candidate)
+        print(vote)
+        vote.save()
+            
+        return redirect('category_details', category_id=category_id)
 
     context = {'category': category, 'candidates': candidates}
     return render(request, "elections/elections/category.html", context)
