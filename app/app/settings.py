@@ -78,12 +78,12 @@ WSGI_APPLICATION = "app.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django_cockroachdb",
-        "NAME": "Evoting",
+        "NAME": "evoting",
         "USER": "voting",
-        "PASSWORD": "FP5464maq4lTyxriyHYnMg",
+        "PASSWORD": "IXnTW4o4XrJdGqdPPok3qA",
         "HOST": "free-tier12.aws-ap-south-1.cockroachlabs.cloud",
         "PORT": "26257",
-        "OPTIONS": {"sslmode": "verify-full", "options": "--cluster=e-voting-1430"},
+        "OPTIONS":{"sslmode": "verify-full", "options": "--cluster=wad-assignment-1185"}
     }
 }
 

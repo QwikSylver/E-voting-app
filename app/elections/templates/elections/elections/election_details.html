@@ -1,0 +1,8 @@
+<h1>{{election.election_reason}}</h1>
+<p>{{election.start_time}} to {{election.end_time}}</p>
+
+{% for category in categories %}
+    <div class="category">
+      <a href="{% url 'category_details' category.category_id %}"><h2>{{ category.topic }}</h2></a>
+    </div>
+    {% endfor %}
