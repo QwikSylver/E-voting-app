@@ -27,5 +27,10 @@ def electionDetails(request, election_id):
 def categoryDetails(request, category_id):
     category = Category.objects.get(category_id=category_id)
     candidates = Candidate.objects.filter(candidate_category=category_id)
+
+    vote_candidates = Voter.voter_id
+    vote_election = Election.election_id
+    vote_category = Category.category_id
+
     context = {'category': category, 'candidates': candidates}
     return render(request, "elections/elections/category.html", context)
