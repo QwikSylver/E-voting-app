@@ -1,9 +1,12 @@
 from django.urls import path
 
-from .views import HomePageView, UserProfileView
+from .views import HomePageView, UserProfileView, electionsPage, electionDetails, categoryDetails
 
 
 urlpatterns = [
     path("", HomePageView, name="home"),
     path("user_profile/<str:user_id>", UserProfileView, name="user_profile"),
+    path("elections/", electionsPage, name="elections"),
+    path("elections/<str:election_id>", electionDetails, name="elections_details"),
+    path("categories/<str:category_id>", categoryDetails, name="category_details"),
 ]
