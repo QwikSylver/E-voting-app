@@ -77,11 +77,13 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "evoting",
-        "USER": "voting",
-        "PASSWORD": "Password123.",
-        "HOST": "localhost",
-        "PORT": "3306",
-        "sql_mode": "STATIC_TRANS_TABLES",
+        "USER": "sakarian",
+        "PASSWORD": "yZj7peFOaIBLpfQ8KOQtFQ.",
+        "HOST": "free-tier8.aws-ap-southeast-1.cockroachlabs.cloud",
+        "PORT": "26257",
+        "OPTIONS":{
+            
+        }
     }
 }
 
