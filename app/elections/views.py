@@ -22,6 +22,7 @@ def ResultsPageView(request, election_id):
     return render(request, "elections/elections/results.html", context)
 
 
+@login_required(login_url="login")
 def UserProfileView(request, user_id):
 
     if request.user.is_authenticated:
