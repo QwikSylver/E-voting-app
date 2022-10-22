@@ -1,6 +1,8 @@
 # E-voting-app
 This is an app that allows any institution to vote for people
 
+## Team Name
+**QuickSilver**
 
 | Lastname | Firstname| University| Phone Number| Email Address|
 | ----------- |----------- | ----------- | ----------- | ----------- |
