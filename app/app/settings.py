@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "elections.apps.ElectionsConfig",
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ ROOT_URLCONF = "app.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -75,6 +76,7 @@ WSGI_APPLICATION = "app.wsgi.application"
 
 DATABASES = {
     "default": {
+<<<<<<< HEAD
         "ENGINE": "django.db.backends.mysql",
         "NAME": "evoting",
         "USER": "sakarian",
@@ -84,6 +86,15 @@ DATABASES = {
         "OPTIONS":{
             
         }
+=======
+        "ENGINE": "django_cockroachdb",
+        "NAME": "Evoting",
+        "USER": "voting",
+        "PASSWORD": "FP5464maq4lTyxriyHYnMg",
+        "HOST": "free-tier12.aws-ap-south-1.cockroachlabs.cloud",
+        "PORT": "26257",
+        "OPTIONS": {"sslmode": "verify-full", "options": "--cluster=e-voting-1430"},
+>>>>>>> 66bbf98ae5fbfe5880db7544a34620041d7f673f
     }
 }
 
@@ -124,7 +135,16 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = "elections.Voter"
+
+LOGIN_REDIRECT_URL = "home"
+
+
+LOGOUT_REDIRECT_URL = "home"
