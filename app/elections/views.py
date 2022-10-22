@@ -78,7 +78,7 @@ def categoryDetails(request, category_id):
         vote = Vote.objects.create(voter_id=voter, candidate_id=candidate, election_id=election)
         vote.save()
             
-        return redirect('elections_details', category_id=category_id)
+        return redirect('elections_details', election_id=election.election_id)
 
     context = {"category": category, "candidates": candidates}
     return render(request, "elections/elections/category.html", context)
