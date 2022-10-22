@@ -19,7 +19,7 @@
       >
       <p>{{ election.start_time }} to {{ election.end_time }}</p>
       <a>
-        <p>Results</p>
+        <a href="{% url 'elections_results' election.election_id %}">Results</a>
       </a>
     </div>
     {% endfor %}
