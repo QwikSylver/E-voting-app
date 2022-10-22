@@ -4,38 +4,30 @@
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-.navbar {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: black;
+a {
+  color: black;
 }
 
-.navbar h1,
-.navbar ul {
+nav div a {
+  font-size: 34px;
   padding: 10px 20px;
-  color: rgb(234, 241, 255);
 }
 
-li,
-a {
-  text-decoration: none;
-  list-style: none;
-}
-
-a {
-  color: rgb(212, 226, 255);
-}
-
-a:hover {
-  color: rgb(53, 121, 216);
-}
-
-.container {
+.flex-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.flex-apart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.block {
+  display: block;
 }
 
 form p {
