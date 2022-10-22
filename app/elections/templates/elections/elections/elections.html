@@ -1,1 +1,32 @@
-<h1>Elections</h1>
+<style>
+  .election-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .election {
+    border: 2px solid black;
+    max-width: 50rem;
+    margin: 2rem;
+  }
+</style>
+
+<div class="election-container">
+  <div class="elections-browser">
+    <p>SRC Elections</p>
+    <p>FCI Elections</p>
+    <p>FHAS Elections</p>
+    <p>Dean Elections</p>
+  </div>
+  <div class="elections-occuring">
+    {% for election in elections %}
+    <div class="election">
+      <a href="{% url 'elections_details' election.election_id %}"><h2>{{ election.election_reason }}</h2></a>
+      <p>{{ election.start_time }} to {{ election.end_time }}</p>
+      <a>
+        <p>Results</p>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
