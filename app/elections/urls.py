@@ -8,6 +8,7 @@ from .views import (
     ResultsPageView,
     logoutUser,
     loginPage,
+    ElectionResults
 )
 
 
@@ -16,7 +17,8 @@ urlpatterns = [
     path("logout/", logoutUser, name="logout"),
     path("elections/", electionsPage, name="home"),
     path("elections/<str:election_id>", electionDetails, name="elections_details"),
-    path("elections/<str:election_id>/results", ResultsPageView, name="results"),
+
+    path("elections/<str:election_id>/results", ElectionResults, name="elections_results"),
     path("user_profile/<str:pk>", UserProfileView.as_view(), name="user_profile"),
     path("categories/<str:category_id>", categoryDetails, name="category_details"),
 ]
