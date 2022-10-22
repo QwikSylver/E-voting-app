@@ -52,3 +52,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: rgb(53, 121, 216);
 }
+
+.row {
+  gap: 10px;
+}

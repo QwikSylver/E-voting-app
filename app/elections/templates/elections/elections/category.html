@@ -2,19 +2,24 @@
 
 <br />
 {% block title %}{{category.topic}}{% endblock title %} {% block content %}
-<h1>{{category.topic}}</h1>
-<h2>Candidates</h2>
-
-{% for candidate in candidates %}
-<div class="candidate">
-  <form>
-    <h2>{{ candidate.candidate_name }}</h2>
-    <p>{{ candidate.description }}</p>
-    <input
-      type="submit"
-      name="vote"
-      value="Vote For {{ candidate.candidate_name }}"
-    />
-  </form>
+<div class="flex-container">
+  <h1>{{category.topic}}</h1>
+  <h2>Candidates</h2>
 </div>
-{% endfor %} {% endblock content %}
+
+<div class="row">
+  {% for candidate in candidates %}
+  <div class="candidate card blue-grey col s12 m4">
+    <form class="card-content white-text">
+      <h2 class="cart-title center-align">{{ candidate.candidate_name }}</h2>
+      <p>{{ candidate.description }}</p>
+      <input
+        class="blue lighten-1"
+        type="submit"
+        name="vote"
+        value="Vote For {{ candidate.candidate_name }}"
+      />
+    </form>
+  </div>
+  {% endfor %} {% endblock content %}
+</div>

@@ -1,18 +1,25 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
+from django.db.models import Count
 from .models import *
 
 
-def HomePageView(response):
-    return HttpResponse("Home Page")
+def ResultsPageView(request, election_id):
+    results = Vote.objects.filter(election_id=election_id)
+
+    categories = Category.objects.all()
+
+    context = {"results": results, "categories": categories}
+
+    return render(request, "elections/elections/results.html", context)
 
 
-def UserProfileView(response, user_id):
+def UserProfileView(request, user_id):
     try:
         user = Voter.objects.get(voter_id=user_id)
     except Voter.DoesNotExist:
         raise Http404("Voter does not exist")
-    return render(response, "elections/user_profile.html", {"user": user})
+    return render(request, "elections/user_profile.html", {"user": user})
 
 
 def electionsPage(request):
