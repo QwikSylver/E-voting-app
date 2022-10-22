@@ -11,14 +11,16 @@
         <h3>{{ category.topic }}</h3>
         <ul class="collection">
             {% for candidate in candidates %}
-            <li class="collection-item">
-                <div class="flex-apart">
-                    <p>{{ candidate.candidate_name }}</p>
-                    <p>{{ candidate.description }}</p>
-                    <!-- Not working -->
-                    <!-- <p>{{ canditates_votes.votes }}</p> -->
-                </div>
-            </li>
+                {% if candidate.candidate_category.topic == category.topic %}
+                    <li class="collection-item">
+                        <div class="flex-apart">
+                            <p>{{ candidate.candidate_name }}</p>
+                            <p>{{ candidate.description }}</p>
+                            <!-- Not working -->
+                            <!-- <p>{{ canditates_votes.votes }}</p> -->
+                        </div>
+                    </li>
+                {% endif %}
             {% endfor %}
         </ul>
     </div>
