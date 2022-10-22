@@ -12,3 +12,6 @@ def UserProfileView(response, user_id):
     except Voter.DoesNotExist:
         raise Http404("Voter does not exist")
     return render(response, "user_profile.html", {"user": user})
+
+def elections(request):
+    return render(request, "elections/elections/elections.html", {})
