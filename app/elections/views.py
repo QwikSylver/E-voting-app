@@ -25,8 +25,6 @@ def ResultsPageView(request, election_id):
 @login_required(login_url="login")
 def UserProfileView(request, user_id):
 
-    if request.user.is_authenticated:
-        return redirect("home")
     try:
         user = Voter.objects.get(voter_id=user_id)
     except Voter.DoesNotExist:
