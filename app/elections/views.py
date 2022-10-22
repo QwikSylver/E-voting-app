@@ -38,8 +38,8 @@ def categoryDetails(request, category_id):
     if request.method == 'POST':
         candidate_id = request.POST.get('candidate_id')
         candidate = Candidate.objects.get(candidate_id=candidate_id)
-        voter = 'sakaria26'
-        vote = Vote.create(voter_id=voter, election_id=election, candidate_id=candidate)
+        voter = Voter.objects.create(voter_id='sakaria26')
+        vote = Vote.objects.create(voter_id=voter, election_id=election, candidate_id=candidate)
         print(vote)
         vote.save()
             
