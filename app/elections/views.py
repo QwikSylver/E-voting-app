@@ -16,6 +16,16 @@ def UserProfileView(response, user_id):
         raise Http404("Voter does not exist")
     return render(response, "elections/user_profile.html", {"user": user})
 
+def ElectionResults(request, election_id):
+    election = Election.objects.get(election_id=election_id)
+    categories = Category.objects.filter(election=election_id)
+    canditates = Candidate.objects.filter(candidate_category__in=categories)
+    votes = Vote.objects.filter(election_id=election_id).count()
+    # candidate_votes = Vote.objects.raw("select candidate_id, count(voter_id) as votes from votes where election_id = %s and category_id = %s group by candidate_id", [election_id, categories.category_id])
+    canditates_votes = Vote.objects.filter(election_id=election_id).values('candidate_id').annotate(votes=models.Count('voter_id'))
+    context = {"election": election, "categories": categories, "votes": votes, "candidates": canditates, "canditates_votes": canditates_votes}
+    return render(request, "elections/election_results.html", context)
+
 
 def electionsPage(request):
     elections = Election.objects.all()
