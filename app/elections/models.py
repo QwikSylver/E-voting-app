@@ -1,7 +1,12 @@
+from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import AbstractUser
 import uuid
 
+
 from django.db import models
+from django.urls import reverse
+
+fs = FileSystemStorage(location="static/media/")
 
 
 # Create your models here.
@@ -31,6 +36,7 @@ class Candidate(models.Model):
     )
     candidate_name = models.CharField(max_length=100)
     candidate_category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    candidate_picture = models.ImageField(storage=fs, null=True)
     description = models.CharField(max_length=250, blank=True, null=True)
 
     def __str__(self):
@@ -42,6 +48,9 @@ class Voter(AbstractUser):
 
     def __str__(self):
         return self.username
+
+    def get_absolute_url(self):
+        return reverse("home")
 
 
 class Vote(models.Model):
