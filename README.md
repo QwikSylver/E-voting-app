@@ -2,7 +2,7 @@
 This is an app that allows any institution to vote for people
 
 ## Team Name
-**QuickSilver**
+**QuickSilver University: NUST**
 
 | Lastname | Firstname| University| Phone Number| Email Address|
 | ----------- |----------- | ----------- | ----------- | ----------- |
